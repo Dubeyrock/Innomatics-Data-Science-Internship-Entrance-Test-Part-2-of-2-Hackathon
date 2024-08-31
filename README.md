@@ -6,6 +6,13 @@ Movie Recommendation System
 Project Overview
 This project involves building a movie recommendation system for Netfiz, a hypothetical streaming platform. The primary objective is to analyze user ratings, movie metadata, and other related data to identify patterns, popular movies, and provide personalized movie recommendations to users. By implementing this system, the platform aims to enhance user engagement and satisfaction, which could lead to increased user retention and revenue.
 
+
+Graph
+=======
+
+![image](https://github.com/user-attachments/assets/ec2f28fd-d6b9-4a7f-b708-9488e324b643)
+
+
 Summary
 =======
 
