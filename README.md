@@ -6,101 +6,156 @@ Movie Recommendation System
 Project Overview
 This project involves building a movie recommendation system for Netfiz, a hypothetical streaming platform. The primary objective is to analyze user ratings, movie metadata, and other related data to identify patterns, popular movies, and provide personalized movie recommendations to users. By implementing this system, the platform aims to enhance user engagement and satisfaction, which could lead to increased user retention and revenue.
 
-Dataset Description
-The dataset used in this project consists of four CSV files:
+Summary
+=======
 
-movies.csv
+This dataset (ml-latest-small) describes 5-star rating and free-text tagging activity from [MovieLens](http://movielens.org), a movie recommendation service. It contains 100836 ratings and 3683 tag applications across 9742 movies. These data were created by 610 users between March 29, 1996 and September 24, 2018. This dataset was generated on September 26, 2018.
 
-Contains movie information, including movie IDs, titles, and genres.
-Columns: movieId, title, genres
-Shape: (9742, 3)
-ratings.csv
+Users were selected at random for inclusion. All selected users had rated at least 20 movies. No demographic information is included. Each user is represented by an id, and no other information is provided.
 
-Contains user ratings for different movies.
-Columns: userId, movieId, rating, timestamp
-Shape: (100836, 4)
-Unique User IDs: 610
-tags.csv
+The data are contained in the files `links.csv`, `movies.csv`, `ratings.csv` and `tags.csv`. More details about the contents and use of all these files follows.
 
-Contains user-submitted tags for movies.
-Columns: userId, movieId, tag, timestamp
-Shape: Varies depending on the number of tags
-links.csv
+This is a *development* dataset. As such, it may change over time and is not an appropriate dataset for shared research results. See available *benchmark* datasets if that is your intent.
 
-Contains mapping to external movie IDs, such as IMDB and TMDB.
-Columns: movieId, imdbId, tmdbId
-Project Workflow
-1. Data Exploration and Analysis
-Shape and Statistics:
+This and other GroupLens data sets are publicly available for download at <http://grouplens.org/datasets/>.
 
-Reviewed the shape of each CSV file to understand the structure of the data.
-Extracted basic statistics from the ratings.csv file, including the distribution of ratings, the number of unique users, and movies.
-Data Cleaning:
 
-Checked for missing values and handled them appropriately.
-Ensured data consistency across different CSV files.
-2. Grouping and Aggregation
-Grouping Ratings:
+Usage License
+=============
 
-Grouped user ratings by movieId.
-Applied aggregation functions such as count and mean to calculate the number of ratings and the average rating for each movie.
-Filtering Popular Movies:
+Neither the University of Minnesota nor any of the researchers involved can guarantee the correctness of the data, its suitability for any particular purpose, or the validity of results based on the use of the data set. The data set may be used for any research purposes under the following conditions:
 
-Filtered the dataset to include only movies that received more than 50 user ratings. This ensured that the recommendations were based on movies with substantial user engagement.
-3. Identifying Popular and Highly Rated Movies
-Top Movies by Number of Ratings:
+* The user may not state or imply any endorsement from the University of Minnesota or the GroupLens Research Group.
+* The user must acknowledge the use of the data set in publications resulting from the use of the data set (see below for citation information).
+* The user may redistribute the data set, including transformations, so long as it is distributed under these same license conditions.
+* The user may not use this information for any commercial or revenue-bearing purposes without first obtaining permission from a faculty member of the GroupLens Research Project at the University of Minnesota.
+* The executable software scripts are provided "as is" without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of them is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction.
 
-Identified the most popular movies based on the number of user ratings. Examples include "Pulp Fiction (1994)", "Shawshank Redemption, The (1994)", and "Matrix, The (1999)".
-Top Movies by Average Rating:
+In no event shall the University of Minnesota, its affiliates or employees be liable to you for any damages arising out of the use or inability to use these programs (including but not limited to loss of data or data being rendered inaccurate).
 
-Calculated the average rating for each movie and identified movies with high user satisfaction.
-4. Web Scraping IMDB Ratings
-Scraping IMDB Ratings:
+If you have any further questions or comments, please email <grouplens-info@umn.edu>
 
-Used the links.csv file to map movies to their IMDB IDs.
-Scraped IMDB ratings for movies with more than 50 user ratings to incorporate external data into the analysis.
-Identifying Top-Rated Movies:
 
-Identified the movie with the highest IMDB rating and the highest-rated Sci-Fi movie.
-5. Conclusion
-The project successfully analyzed user ratings and movie metadata, identifying popular movies and calculating average ratings. By filtering for movies with significant user engagement, the project ensured the reliability of the insights generated. The addition of IMDB ratings provided a broader perspective on movie quality.
+Citation
+========
 
-The final outcome of this project can be used to refine the recommendation algorithms at Netfiz, ultimately improving user engagement by providing personalized movie suggestions that align with user preferences.
+To acknowledge use of the dataset in publications, please cite the following paper:
 
-Future Work
-Expand Data Sources:
+> F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4: 19:1–19:19. <https://doi.org/10.1145/2827872>
 
-Incorporate additional data sources, such as user demographics and watch history, to improve the accuracy of recommendations.
-Advanced Recommendation Algorithms:
 
-Implement advanced machine learning techniques such as collaborative filtering, content-based filtering, and hybrid models to enhance the recommendation system.
-Real-time Recommendations:
+Further Information About GroupLens
+===================================
 
-Develop a real-time recommendation engine that updates suggestions based on the user’s current viewing behavior.
-Installation and Usage
-Requirements
+GroupLens is a research group in the Department of Computer Science and Engineering at the University of Minnesota. Since its inception in 1992, GroupLens's research projects have explored a variety of fields including:
 
-Python 3.11
+* recommender systems
+* online communities
+* mobile and ubiquitious technologies
+* digital libraries
+* local geographic information systems
 
-Pandas
-NumPy
+GroupLens Research operates a movie recommender based on collaborative filtering, MovieLens, which is the source of these data. We encourage you to visit <http://movielens.org> to try it out! If you have exciting ideas for experimental work to conduct on MovieLens, send us an email at <grouplens-info@cs.umn.edu> - we are always interested in working with external collaborators.
 
-BeautifulSoup (for web scraping)
 
-Requests (for web scraping)
+Content and Use of Files
+========================
 
-Jupyter Notebook (for development and visualization)
+Formatting and Encoding
+-----------------------
 
-Steps to Run the Project
+The dataset files are written as [comma-separated values](http://en.wikipedia.org/wiki/Comma-separated_values) files with a single header row. Columns that contain commas (`,`) are escaped using double-quotes (`"`). These files are encoded as UTF-8. If accented characters in movie titles or tag values (e.g. Misérables, Les (1995)) display incorrectly, make sure that any program reading the data, such as a text editor, terminal, or script, is configured for UTF-8.
 
-Clone the repository to your local machine.
-Ensure all required Python libraries are installed using pip install -r requirements.txt.
-Download the dataset and place the CSV files in the appropriate directory.
-Run the Jupyter Notebook to execute the data analysis and recommendation pipeline.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
-Acknowledgments
-Special thanks to the MovieLens dataset for providing the data used in this project.
-Gratitude to the Netfiz team for their guidance and support throughout the project.
+User Ids
+--------
 
+MovieLens users were selected at random for inclusion. Their ids have been anonymized. User ids are consistent between `ratings.csv` and `tags.csv` (i.e., the same id refers to the same user across the two files).
+
+
+Movie Ids
+---------
+
+Only movies with at least one rating or tag are included in the dataset. These movie ids are consistent with those used on the MovieLens web site (e.g., id `1` corresponds to the URL <https://movielens.org/movies/1>). Movie ids are consistent between `ratings.csv`, `tags.csv`, `movies.csv`, and `links.csv` (i.e., the same id refers to the same movie across these four data files).
+
+
+Ratings Data File Structure (ratings.csv)
+-----------------------------------------
+
+All ratings are contained in the file `ratings.csv`. Each line of this file after the header row represents one rating of one movie by one user, and has the following format:
+
+    userId,movieId,rating,timestamp
+
+The lines within this file are ordered first by userId, then, within user, by movieId.
+
+Ratings are made on a 5-star scale, with half-star increments (0.5 stars - 5.0 stars).
+
+Timestamps represent seconds since midnight Coordinated Universal Time (UTC) of January 1, 1970.
+
+
+Tags Data File Structure (tags.csv)
+-----------------------------------
+
+All tags are contained in the file `tags.csv`. Each line of this file after the header row represents one tag applied to one movie by one user, and has the following format:
+
+    userId,movieId,tag,timestamp
+
+The lines within this file are ordered first by userId, then, within user, by movieId.
+
+Tags are user-generated metadata about movies. Each tag is typically a single word or short phrase. The meaning, value, and purpose of a particular tag is determined by each user.
+
+Timestamps represent seconds since midnight Coordinated Universal Time (UTC) of January 1, 1970.
+
+
+Movies Data File Structure (movies.csv)
+---------------------------------------
+
+Movie information is contained in the file `movies.csv`. Each line of this file after the header row represents one movie, and has the following format:
+
+    movieId,title,genres
+
+Movie titles are entered manually or imported from <https://www.themoviedb.org/>, and include the year of release in parentheses. Errors and inconsistencies may exist in these titles.
+
+Genres are a pipe-separated list, and are selected from the following:
+
+* Action
+* Adventure
+* Animation
+* Children's
+* Comedy
+* Crime
+* Documentary
+* Drama
+* Fantasy
+* Film-Noir
+* Horror
+* Musical
+* Mystery
+* Romance
+* Sci-Fi
+* Thriller
+* War
+* Western
+* (no genres listed)
+
+
+Links Data File Structure (links.csv)
+---------------------------------------
+
+Identifiers that can be used to link to other sources of movie data are contained in the file `links.csv`. Each line of this file after the header row represents one movie, and has the following format:
+
+    movieId,imdbId,tmdbId
+
+movieId is an identifier for movies used by <https://movielens.org>. E.g., the movie Toy Story has the link <https://movielens.org/movies/1>.
+
+imdbId is an identifier for movies used by <http://www.imdb.com>. E.g., the movie Toy Story has the link <http://www.imdb.com/title/tt0114709/>.
+
+tmdbId is an identifier for movies used by <https://www.themoviedb.org>. E.g., the movie Toy Story has the link <https://www.themoviedb.org/movie/862>.
+
+Use of the resources listed above is subject to the terms of each provider.
+
+
+Cross-Validation
+----------------
+
+Prior versions of the MovieLens dataset included either pre-computed cross-folds or scripts to perform this computation. We no longer bundle either of these features with the dataset, since most modern toolkits provide this as a built-in feature. If you wish to learn about standard approaches to cross-fold computation in the context of recommender systems evaluation, see [LensKit](http://lenskit.org) for tools, documentation, and open-source code examples.
